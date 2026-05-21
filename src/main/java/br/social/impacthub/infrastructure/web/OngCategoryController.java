@@ -7,11 +7,13 @@ import br.social.impacthub.service.OngService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/api/v1/ong-categories")
+@RestController
+@RequestMapping("/api/v1/ong-categories")
 public class OngCategoryController implements OngCategoryControllerDocs {
     private final OngService ongService;
 
