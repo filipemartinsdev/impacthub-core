@@ -227,4 +227,13 @@ public class GlobalExceptionHandler {
                         StandardResponse.fail(exception.getMessage())
                 );
     }
+
+    @ExceptionHandler(OngParticipantNotFoundException.class)
+    public ResponseEntity<StandardResponse<Void>> handleOngParticipantNotFound(OngParticipantNotFoundException exception) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(
+                        StandardResponse.fail(exception.getMessage())
+                );
+    }
 }
