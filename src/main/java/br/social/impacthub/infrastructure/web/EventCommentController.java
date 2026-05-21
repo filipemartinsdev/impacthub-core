@@ -26,15 +26,17 @@ public class EventCommentController {
     }
 
     @PostMapping("/{id}/comments")
-    public ResponseEntity<StandardResponse<EventCommentResponse>> createEventComment(
+    public ResponseEntity<StandardResponse<Void>> createEventComment(
             @PathVariable UUID id,
             @Valid @RequestBody CreateEventCommentRequest request
     ){
         UUID authenticatedUserId = authService.getAuthenticatedUser().userId();
 
+        eventCommentService.create(id, request, authenticatedUserId);
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(StandardResponse.success(eventCommentService.create(id, request, authenticatedUserId)));
+                .body(StandardResponse.success());
     }
 
     @GetMapping("/{id}/comments")
