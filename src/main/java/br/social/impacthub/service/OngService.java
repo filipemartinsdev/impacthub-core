@@ -4,6 +4,7 @@ import br.social.impacthub.exception.*;
 import br.social.impacthub.infrastructure.persistence.*;
 import br.social.impacthub.model.dto.*;
 import br.social.impacthub.model.entity.*;
+import br.social.impacthub.service.mapper.OngCategoryMapper;
 import br.social.impacthub.service.mapper.OngMapper;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -25,6 +26,7 @@ public class OngService {
     private final OngCategoryRepository ongCategoryRepository;
     private final OngParticipantRepository ongParticipantRepository;
     private final OngParticipantRoleRepository ongParticipantRoleRepository;
+    private final OngCategoryMapper ongCategoryMapper;
 
     public OngService(
             OngMapper ongMapper,
@@ -32,7 +34,7 @@ public class OngService {
             UserProfileRepository userProfileRepository,
             OngFollowerRepository ongFollowerRepository,
             OngCategoryRepository ongCategoryRepository,
-            OngParticipantRepository ongParticipantRepository, OngParticipantRoleRepository ongParticipantRoleRepository) {
+            OngParticipantRepository ongParticipantRepository, OngParticipantRoleRepository ongParticipantRoleRepository, OngCategoryMapper ongCategoryMapper) {
         this.ongMapper = ongMapper;
         this.ongRepository = ongRepository;
         this.userProfileRepository = userProfileRepository;
@@ -40,6 +42,7 @@ public class OngService {
         this.ongCategoryRepository = ongCategoryRepository;
         this.ongParticipantRepository = ongParticipantRepository;
         this.ongParticipantRoleRepository = ongParticipantRoleRepository;
+        this.ongCategoryMapper = ongCategoryMapper;
     }
 
     public PagedResponse<OngSummaryResponse> getAll(UUID authenticatedUserId, Pageable pageable){
@@ -203,4 +206,11 @@ public class OngService {
         return ongMapper.toResponse(savedOng);
     }
 
+
+//    TODO: unit tests
+    public List<String> getAllCategories() {
+        return ongCategoryRepository.findAll().stream()
+                .map(ongCategoryMapper::toResponse)
+                .toList();
+    }
 }

@@ -9,7 +9,7 @@
 
 API RESTful
 
-**[Documentação »](https://impacthub.up.railway.app/swagger-ui/index.html)**
+**[Documentação »](https://impact-hub.up.railway.app/swagger-ui/index.html)**
 
 </p>
 
@@ -37,9 +37,9 @@ Projeto voluntário desenvolvido como proposta da comunidade DevSquad.
 
 - [x] Autenticação
 - [x] Gerenciamento de Usuários
-- [ ] Gerenciamento de ONGs
-- [ ] Gerenciamento de Eventos
-- [ ] Interações com enventos
+- [x] Gerenciamento de ONGs
+- [x] Gerenciamento de Eventos
+- [x] Interações com enventos
 
 
 ---
