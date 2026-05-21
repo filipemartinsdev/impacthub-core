@@ -1,5 +1,6 @@
 package br.social.impacthub.infrastructure.web;
 
+import br.social.impacthub.infrastructure.web.docs.OngParticipantRoleControllerDocs;
 import br.social.impacthub.model.dto.StandardResponse;
 import br.social.impacthub.model.entity.OngParticipantRole;
 import br.social.impacthub.service.OngParticipantRoleService;
@@ -16,7 +17,7 @@ import java.util.List;
 // TODO: openAPI docs
 @RestController
 @RequestMapping("/api/v1/ongs/participant-roles")
-public class OngParticipantRoleController {
+public class OngParticipantRoleController implements OngParticipantRoleControllerDocs {
     private final OngParticipantRoleService ongParticipantRoleService;
 
     public OngParticipantRoleController(OngParticipantRoleService ongParticipantRoleService) {
