@@ -36,7 +36,7 @@ public interface OngParticipantControllerDocs {
                     )
             )
     })
-    ResponseEntity<StandardResponse<OngParticipantResponse>> getAuthenticatedParticipant();
+    ResponseEntity<StandardResponse<OngParticipantResponse>> getAuthenticatedParticipant(UUID ongId);
 
 
     @SecurityRequirement(name = "bearerAuth")
