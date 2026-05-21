@@ -9,7 +9,7 @@
 
 API RESTful
 
-**[Documentação »](https://impacthub.up.railway.app/swagger-ui/index.html)**
+**[Documentação »](https://impact-hub.up.railway.app/swagger-ui/index.html)**
 
 </p>
 
