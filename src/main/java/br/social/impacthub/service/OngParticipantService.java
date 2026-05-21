@@ -1,9 +1,6 @@
 package br.social.impacthub.service;
 
-import br.social.impacthub.exception.ForbiddenOperationException;
-import br.social.impacthub.exception.InvalidOngParticipantRoleException;
-import br.social.impacthub.exception.OngNotFoundException;
-import br.social.impacthub.exception.UserNotExistsException;
+import br.social.impacthub.exception.*;
 import br.social.impacthub.infrastructure.persistence.OngParticipantRepository;
 import br.social.impacthub.infrastructure.persistence.OngParticipantRoleRepository;
 import br.social.impacthub.infrastructure.persistence.OngRepository;
@@ -43,7 +40,6 @@ public class OngParticipantService {
         this.ongParticipantRepository = ongParticipantRepository;
         this.ongParticipantMapper = ongParticipantMapper;
     }
-
     public PagedResponse<OngParticipantResponse> getAllByOngId(
             UUID ongId,
             Pageable pageable
@@ -172,5 +168,20 @@ public class OngParticipantService {
         ).orElseThrow(() -> new UserNotExistsException("Participant not found"));
 
         return ongParticipantMapper.toResponse(ongParticipant);
+    }
+
+    public OngParticipantResponse getById(UUID ongId, UUID userId) {
+        UserProfile user = userProfileRepository.findById(userId)
+                .orElseThrow(() -> new UserNotExistsException("User not found"));
+
+        Ong ong = ongRepository.findById(ongId)
+                .orElseThrow(() -> new OngNotFoundException("Ong not found by ID: "+ongId));
+
+        OngParticipantId ongParticipantId = new OngParticipantId(ong, user);
+
+        return ongParticipantMapper.toResponse(
+                ongParticipantRepository.findById(ongParticipantId)
+                        .orElseThrow(() -> new OngParticipantNotFoundException("Ong participant not found by user ID: "+ongParticipantId.getUser().getUserId()))
+        );
     }
 }

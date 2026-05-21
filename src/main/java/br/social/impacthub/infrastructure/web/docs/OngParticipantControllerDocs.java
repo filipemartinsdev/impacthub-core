@@ -17,6 +17,29 @@ import java.util.UUID;
 public interface OngParticipantControllerDocs {
 
     @SecurityRequirement(name = "bearerAuth")
+    @Operation(summary = "Get authenticated participant")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Participant retrieved successfully",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = StandardResponse.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Ong or participant not found",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = StandardResponse.class)
+                    )
+            )
+    })
+    ResponseEntity<StandardResponse<OngParticipantResponse>> getAuthenticatedParticipant();
+
+
+    @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "Invite a user to participate in an ONG")
     @ApiResponses({
             @ApiResponse(
