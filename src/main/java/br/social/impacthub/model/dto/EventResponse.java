@@ -15,6 +15,7 @@ public record EventResponse(
         UserProfileResponse createdBy,
         Long viewsCount,
         Long likesCount,
+        Long commentsCount,
         Boolean isLiked
 ) {
 }

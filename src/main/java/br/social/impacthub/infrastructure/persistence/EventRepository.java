@@ -29,6 +29,11 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
                 WHERE l.event.id = :eventId
             ) as likesCount,
             (
+                SELECT COUNT(c)
+                FROM EventComment c
+                WHERE c.event.id = :eventId
+            ) as commentsCount,
+            (
                 SELECT CASE
                     WHEN COUNT(l) > 0 THEN true
                     ELSE false
@@ -61,6 +66,11 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
                 WHERE l.event.id = e.id
             ) as likesCount,
             (
+                SELECT COUNT(c)
+                FROM EventComment c
+                WHERE c.event.id = e.id
+            ) as commentsCount,
+            (
                 SELECT CASE
                     WHEN COUNT(l) > 0 THEN true
                     ELSE false
@@ -91,6 +101,11 @@ public interface EventRepository extends JpaRepository<Event, UUID> {
                     FROM EventLike l
                     WHERE l.event.id = e.id
                 ) as likesCount,
+                (
+                    SELECT COUNT(c)
+                    FROM EventComment c
+                    WHERE c.event.id = e.id
+                ) as commentsCount,
                 (
                     SELECT CASE
                         WHEN COUNT(l) > 0 THEN true

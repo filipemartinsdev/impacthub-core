@@ -14,5 +14,6 @@ public interface EventSummary {
     UserProfile getCreatedBy();
     Long getViewsCount();
     Long getLikesCount();
+    Long getCommentsCount();
     Boolean getIsLiked();
 }

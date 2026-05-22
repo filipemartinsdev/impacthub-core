@@ -23,6 +23,7 @@ public class EventMapper {
                 ),
                 eventSummary.getViewsCount(),
                 eventSummary.getLikesCount(),
+                eventSummary.getCommentsCount(),
                 eventSummary.getIsLiked()
         );
     }
