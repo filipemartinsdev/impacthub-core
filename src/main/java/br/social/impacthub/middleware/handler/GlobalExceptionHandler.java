@@ -236,4 +236,13 @@ public class GlobalExceptionHandler {
                         StandardResponse.fail(exception.getMessage())
                 );
     }
+
+    @ExceptionHandler(NotificationNotFoundException.class)
+    public ResponseEntity<StandardResponse<Void>> handleNotificationNotFound(NotificationNotFoundException exception) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(
+                        StandardResponse.fail(exception.getMessage())
+                );
+    }
 }

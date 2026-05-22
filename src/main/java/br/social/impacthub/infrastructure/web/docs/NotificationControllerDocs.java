@@ -12,6 +12,9 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.UUID;
 
 @Tag(name = "Notifications")
 public interface NotificationControllerDocs {
@@ -33,4 +36,23 @@ public interface NotificationControllerDocs {
             )
     })
     ResponseEntity<StandardResponse<PagedResponse<NotificationResponse>>> findAll(Boolean isViewed, Pageable pageable);
+
+    @SecurityRequirement(name = "bearerAuth")
+    @Operation(summary = "Get user notifications")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Notifications viewed successfully",
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = StandardResponse.class)
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Notification not found",
+                    content = @Content
+            )
+    })
+    ResponseEntity<StandardResponse<Void>> view(UUID id);
 }
