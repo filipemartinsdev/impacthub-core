@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;
 
-@Tag(name = "Ongs")
+@Tag(name = "ONGs")
 public interface OngControllerDocs {
 
     @SecurityRequirement(name = "bearerAuth")

@@ -1,5 +1,6 @@
 package br.social.impacthub.infrastructure.web;
 
+import br.social.impacthub.infrastructure.web.docs.EventCommentControllerDocs;
 import br.social.impacthub.model.dto.CreateEventCommentRequest;
 import br.social.impacthub.model.dto.EventCommentResponse;
 import br.social.impacthub.model.dto.PagedResponse;
@@ -16,7 +17,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/events")
-public class EventCommentController {
+public class EventCommentController implements EventCommentControllerDocs {
     private final EventCommentService eventCommentService;
     private final AuthService authService;
 
