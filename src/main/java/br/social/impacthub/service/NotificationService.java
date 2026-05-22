@@ -1,5 +1,6 @@
 package br.social.impacthub.service;
 
+import br.social.impacthub.exception.NotificationNotFoundException;
 import br.social.impacthub.infrastructure.persistence.NotificationRepository;
 import br.social.impacthub.model.dto.NotificationResponse;
 import br.social.impacthub.model.dto.PagedResponse;
@@ -68,5 +69,13 @@ public class NotificationService {
                         .toList()
                 )
                 .build();
+    }
+
+    public void view(UUID notificationId){
+        Notification notification =  notificationRepository.findById(notificationId)
+                .orElseThrow(() -> new NotificationNotFoundException("Notification not found by ID: "+notificationId));
+
+        notification.setIsViewed(true);
+        notificationRepository.save(notification);
     }
 }
