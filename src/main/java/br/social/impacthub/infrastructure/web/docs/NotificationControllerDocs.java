@@ -38,7 +38,7 @@ public interface NotificationControllerDocs {
     ResponseEntity<StandardResponse<PagedResponse<NotificationResponse>>> findAll(Boolean isViewed, Pageable pageable);
 
     @SecurityRequirement(name = "bearerAuth")
-    @Operation(summary = "Get user notifications")
+    @Operation(summary = "View notification")
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
